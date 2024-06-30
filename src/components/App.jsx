@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import css from "./App.module.css";
+
 import Descriptions from "./Descriptions/Descriptions";
 import Options from "./Options/Options";
 import Feedback from "./Feedback/Feedback";
+import Notification from "./Notification/Notification";
 
 function App() {
   const [response, setResponse] = useState(() => {
@@ -37,9 +39,10 @@ function App() {
   return (
     <div className={css.container}>
       <Descriptions />
-      <Options toSetResponse={updateFeedback} />
-      {totalFeedback === 0 && <p>No feedback yet</p>}
-      {totalFeedback !== 0 && (
+      <Options toSetResponse={updateFeedback} totalResponse={totalFeedback} />
+      {totalFeedback === 0 ? (
+        <Notification>No feedback yet</Notification>
+      ) : (
         <Feedback
           good={good}
           neutral={neutral}

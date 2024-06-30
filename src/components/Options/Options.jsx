@@ -1,6 +1,6 @@
 import css from "./Options.module.css";
 
-export default function Options({ toSetResponse }) {
+export default function Options({ toSetResponse, totalResponse }) {
   return (
     <div className={css.buttons}>
       <button
@@ -24,13 +24,15 @@ export default function Options({ toSetResponse }) {
       >
         Bad
       </button>
-      <button
-        onClick={() => {
-          toSetResponse("reset");
-        }}
-      >
-        Reset
-      </button>
+      {totalResponse !== 0 && (
+        <button
+          onClick={() => {
+            toSetResponse("reset");
+          }}
+        >
+          Reset
+        </button>
+      )}
     </div>
   );
 }
